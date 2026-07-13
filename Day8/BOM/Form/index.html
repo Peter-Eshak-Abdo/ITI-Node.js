@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Form Validation</title>
+
+    <style>
+      body {
+        font-family: Arial;
+        text-align: center;
+        margin-top: 40px;
+      }
+
+      input {
+        margin: 5px;
+      }
+
+      span {
+        color: red;
+        font-size: 12px;
+      }
+
+      table {
+        margin: 20px auto;
+        border-collapse: collapse;
+        width: 500px;
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid black;
+      }
+
+      th,
+      td {
+        padding: 8px;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <form id="myForm">
+      <label>Name :<input type="text" id="name"></label>
+      <span id="nameError"></span>
+      <br>
+      <label>Age :<input type="text" id="age"></label>
+      <span id="ageError"></span>
+      <br>
+      <label>Email :<input type="text" id="email"></label>
+      <span id="emailError"></span>
+      <br>
+      <input type="button" value="Add" onclick="addData()">
+      <input type="reset" value="Reset">
+
+    </form>
+
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Email</th>
+      </tr>
+      <tbody id="data"></tbody>
+    </table>
+
+    <script>
+
+      function addData() {
+        var name = document.getElementById("name").value;
+        var age = document.getElementById("age").value;
+        var email = document.getElementById("email").value;
+
+        document.getElementById("nameError").innerHTML = "";
+        document.getElementById("ageError").innerHTML = "";
+        document.getElementById("emailError").innerHTML = "";
+        var valid = true;
+        if (name == "") {
+          document.getElementById("nameError").innerHTML = "Required";
+          valid = false;
+        }
+        if (age == "" || isNaN(age)) {
+          document.getElementById("ageError").innerHTML = "Invalid Age";
+          valid = false;
+        }
+        if (email == "" || email.indexOf("@") == -1) {
+          document.getElementById("emailError").innerHTML = "Invalid Email";
+          valid = false;
+        }
+        if (valid) {
+          document.getElementById("data").innerHTML +=
+            "<tr><td>" + name + "</td><td>" + age + "</td><td>" + email + "</td></tr>";
+          document.getElementById("myForm").reset();
+        }
+      }
+    </script>
+  </body>
+
+</html>

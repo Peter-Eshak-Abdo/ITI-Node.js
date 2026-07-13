@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery</title>
+  </head>
+
+  <body>
+    <h2>Showing Pics</h2>
+    <button onclick="nextImg()">Next</button>
+    <button onclick="slideShow()">SlideShow</button>
+    <button onclick="stopShow()">Stop</button>
+    <button onclick="prevImg()">Previous</button>
+
+    <img id="photo" src="./1.jpg" alt="Photo Gallery"
+      style="display: block;width: 300px;height:auto; margin-top: 20px;">
+
+    <script>
+      var images = [
+        "./1.jpg",
+        "./2.jpg",
+        "./3.jpg",
+        "./4.jpg",
+        "./5.jpg",
+        "./6.jpg"
+      ];
+
+      var index = 0;
+      var timer;
+
+      function showImage() {
+        document.getElementById("photo").src = images[index];
+      }
+
+      function nextImg() {
+        if (index < images.length - 1) {
+          index++;
+          showImage();
+        }
+      }
+
+      function prevImg() {
+        if (index > 0) {
+          index--;
+          showImage();
+        }
+      }
+
+      function slideShow() {
+        clearInterval(timer);
+        timer = setInterval(function () {
+          index++;
+          if (index == images.length) {
+            index = 0;
+          }
+          showImage();
+        }, 1000);
+      }
+
+      function stopShow() {
+        clearInterval(timer);
+      }
+    </script>
+  </body>
+
+</html>

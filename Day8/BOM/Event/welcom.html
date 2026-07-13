@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>Welcome</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+  </head>
+
+  <body>
+
+    <h2 id="msg"></h2>
+
+    <script>
+
+      var data = new URLSearchParams(location.search);
+
+      document.getElementById("msg").innerHTML =
+        "Welcome " + data.get("job") + " " + data.get("name") +
+        "<br><br>Email : " + data.get("email") +
+        "<br>Mobile : " + data.get("mobile") +
+        "<br>Gender : " + data.get("gender") +
+        "<br>Address : " + data.get("address");
+
+    </script>
+
+  </body>
+
+</html>

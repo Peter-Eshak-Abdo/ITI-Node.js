@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>Num Only</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+  </head>
+
+  <body>
+
+    <label>Enter Number(ONLY): <input type="text" id="num"></label>
+
+    <script>
+
+      document.getElementById("num").onkeypress = function (e) {
+
+        if (e.key < "0" || e.key > "9") {
+          e.preventDefault();
+        }
+
+      }
+
+    </script>
+
+  </body>
+
+</html>

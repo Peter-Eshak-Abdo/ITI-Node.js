@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>Parent</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+  </head>
+
+  <body>
+
+    <button onclick="openWin()">Open Window</button>
+
+    <script>
+      function openWin() {
+        var w = window.open("child.html", "", "width=300,height=200");
+        setTimeout(function () {
+          w.close();
+        }, 5000);
+      }
+    </script>
+  </body>
+
+</html>

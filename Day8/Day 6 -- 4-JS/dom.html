@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM</title>
+
+    <style>
+      .red-class {
+        background-color: red;
+        font-size: 32px;
+        font-weight: bold;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div id="append-div"></div>
+    <div class="my-div">
+      <p></p>
+    </div>
+
+    <img src="" alt="" />
+
+    <p id="id-para">hello iam paragraph one</p>
+    <span>
+      <a href id="my-a">link</a>
+    </span>
+    <span></span>
+    <span></span>
+
+    <h1 id="h1-id" onclick="h1Click()">hello iam h1</h1>
+    <div id="div-id" onclick="h1Click()">
+        <p>hello iam p1</p>
+        <p>hello iam p2</p>
+        <p>hello iam p3</p>
+    </div>
+
+    <button onclick="alertData(this)">1</button>
+    <button onclick="alertData(this)">2</button>
+    <button onclick="alertData(this)">3</button>
+
+    <div class="last-div"></div>
+    <div class="last-div"></div>
+    <div class="last-div"></div>
+
+
+    <div onclick="changeColor(this)">hello iam a div with a function</div>
+    <div onclick="changeColor()" id="new">hello iam a new div with a function</div>
+
+    <script src="dom.js"></script>
+  </body>
+</html>

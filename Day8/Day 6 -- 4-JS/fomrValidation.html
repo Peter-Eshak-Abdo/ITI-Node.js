@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Form Validation</title>
+        <style>
+        div{
+            background-color: aqua;
+            width: 200px;
+            height: 200px;
+        }
+        span{
+            color:red;
+        }
+    </style>
+    </head>
+    <body>
+
+         <!-- action="welcome.html"  -->
+        <!-- <div ></div> -->
+        <form action="welcome.html" onsubmit="validationSubmit(event)">
+
+            <input type="text" name="firstName" id="first-name" onchange="inputValidation()">
+            <input type="text" name="lastName" id="first-name" onchange="inputValidation()">
+            <span id="validateError"></span>
+            <!-- <input type="text" name="firstName" id="first-name" onblur="inputValidation()"> -->
+            <!-- <span id="validateError"></span> -->
+            
+            <!-- <input type="text" name="firstName" id="first-name" onchange="inputValidation()"  -->
+                    <!-- oninput="getChars()"> -->
+            <br>
+            <input type="submit">
+        </form>
+
+        <button onclick="clearInt()">clear interval</button>
+        <script src="validation.js"></script>
+    </body>
+</html>

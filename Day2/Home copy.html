@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>بيتر اسحاق عبده</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+
+  <body>
+    <table width="50%" border="3">
+      <thead bgcolor="blue">
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Details</th>
+        </tr>
+      </thead>
+      <tbody bgcolor="green">
+        <tr>
+          <th>Jhon</th>
+          <th>25</th>
+          <th rowspan="2">Merged Rows</th>
+        </tr>
+        <tr>
+          <td colspan="2">Marged Columns</td>
+        </tr>
+        <tr>
+          <td>Hane</td>
+          <td>30</td>
+          <td>
+            <table>
+              <tbody>
+                <tr bgcolor="yellow">
+                  <td>Nested Table</td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Joe Dow</td>
+          <td>25</td>
+          <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente consequuntur</td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <hr>
+    <hr>
+    <hr>
+    <form action="/welcom.html" novalidate>
+      <label for="email">Enter your Email:<input type="email" id="email" name="email"></label>
+      </hr>
+      <p>Hobby</p>
+      <label for="hoppy">Music<input type="checkbox" id="hoppy" name="hobby" value="music"></label>
+      <label for="hoppy">Footbale<input type="checkbox" id="hoppy" name="hobby" value="football"></label>
+      <label for="hoppy">IQ<input type="checkbox" id="hoppy" name="hobby" value="IQ"></label>
+      </hr>
+      <p>Gender</p>
+      <label for="gender">Male<input type="radio" id="gender" name="gender" value="mail"></label>
+      <label for="gender">Femal<input type="radio" id="gender" name="gender" value="female"></label>
+      <label for="gender">prefer not to say<input type="radio" id="gender" name="gender" value="not"></label>
+      </hr>
+      <label for="contry">Contry:</label>
+      <select id="contry" name="contry">
+        <option value="egypt">egypt</option>
+        <option value="Astiria">Astiria</option>
+        <option value="Australlia">Australlia</option>
+      </select>
+      </hr>
+      <label for="message">Text Area<textarea name="message" rows="3" cols="40"></textarea></label>
+      <label for="myfile">Select a Image:</label>
+      <input type="file" id="myfile" name="myfile">
+      </hr>
+
+      <input type="submit" value="Submit">
+    </form>
+  </body>
+
+</html>

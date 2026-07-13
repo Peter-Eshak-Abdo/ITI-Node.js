@@ -1,0 +1,62 @@
+/* #h1-id{
+    color: blue;
+}
+
+.h1-class{
+    color: yellow;
+}
+
+h1{
+    color: green;
+} */
+/* 
+#h2-id {
+  color: pink;
+}
+
+.h2-class {
+  color: blue;
+}
+
+h2 {
+  color: red !important;
+} */
+
+/* h1 , h2 , h3 , h4 , p{
+  color: orange;
+} */
+
+/* .orange-color{
+    color: orange;
+    background-color: black;
+} */
+
+
+/* div p {
+    color: red;
+} */
+
+
+
+/* div > p{
+    color: blue;
+}
+
+
+div span p{
+    background-color: red;
+} */
+
+
+/* div + p {
+    color: red;
+} */
+
+
+/* div ~ p {
+    color: blue;
+} */
+
+.yasser{
+    background-color: red;
+}

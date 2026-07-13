@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    thanks for your registration
+    <div></div>
+
+    <script>
+      var userDate = location.search;
+      console.log(userDate); //string
+      var userDataArray = userDate.split("&");
+      var firstName = userDataArray[0].split("=")[1];
+      console.log(firstName)
+      var lastName = userDataArray[1].split("=")[1];
+      console.log(lastName)
+
+      document.write(`<h1>welcome ${firstName} ${lastName} </h1>`);
+    </script>
+  </body>
+</html>

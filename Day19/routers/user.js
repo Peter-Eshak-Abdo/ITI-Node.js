@@ -10,7 +10,7 @@ const {
 const {
   updateUserSchema,
   createUserSchema,
-} = require("../utils/validate-shema/user");
+} = require("../utils/validate-schema/user");
 const validate = require("../middleware/joi-validate");
 const router = express.Router();
 const { uploadOnDisk, uploadOnMomory } = require("../middleware/upload-image");

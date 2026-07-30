@@ -1,9 +1,9 @@
 {
-  "name": "iti-api",
+  "name": "blog-final",
   "version": "1.0.0",
   "description": "",
   "license": "ISC",
-  "author": "hesham",
+  "author": "peter",
   "type": "commonjs",
   "main": "index.js",
   "scripts": {

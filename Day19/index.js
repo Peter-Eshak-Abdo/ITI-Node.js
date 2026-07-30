@@ -7,10 +7,10 @@ const postRouter = require("./routers/post");
 const groupRouter = require("./routers/group");
 const errorHandler = require("./middleware/error");
 const notFoundHandler = require("./middleware/not-found");
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 const morgan = require("morgan");
 const cors = require("cors");
-const User = require("./model/user");
+// const User = require("./model/user");
 const mongoConnect = require("./config/db-connect");
 
 mongoConnect();
@@ -21,7 +21,7 @@ app.use(morgan("dev"));
 app.use(cors());
 
 app.use("/api", userRouter);
-app.use("/api", authRouter);
+app.use("/api/auth", authRouter);
 app.use("/api", postRouter);
 app.use("/api", groupRouter);
 
@@ -44,4 +44,12 @@ app.use(errorHandler);
 // app.listen(process.env.PORT || 3000, async () => {
 //   console.log(`Server is running on http://localhost:${process.env.PORT}`);
 // });
+
+// تشغيل السيرفر محلياً
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(process.env.PORT || 3000, () => {
+    console.log(`Server is running on http://localhost:${process.env.PORT || 3000}`);
+  });
+}
+
 module.exports = app;

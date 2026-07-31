@@ -7,23 +7,28 @@ const {
   deletePost,
 } = require("../controllers/post");
 const auth = require("../middleware/auth");
-const { uploadOnMomory } = require("../middleware/upload-image");
-const uplaodImageKit = require("../middleware/image-kit");
+const { uploadOnMemory } = require("../middleware/upload-image");
+const uploadImageKit = require("../middleware/image-kit");
 const validate = require("../middleware/joi-validate");
-const { postSchema } = require("../utils/validate-schema/validation");
+const {
+  postSchema,
+  updatePostSchema,
+} = require("../utils/validate-schema/validation");
+
 const router = express.Router();
+
+router.use(auth);
 
 router.post(
   "/posts",
-  auth,
-  uploadOnMomory.array("images", 5),
-  uplaodImageKit(true, "blog-posts"),
+  uploadOnMemory.array("images", 5),
+  uploadImageKit(true, "blog-posts"),
   validate(postSchema),
   createPost,
 );
-router.get("/posts", auth, getAllPosts);
-router.get("/users/:userId/posts", auth, getUserPosts);
-router.put("/posts/:id", auth, updatePost);
-router.delete("/posts/:id", auth, deletePost);
+router.get("/posts", getAllPosts);
+router.get("/users/:userId/posts", getUserPosts);
+router.patch("/posts/:id", validate(updatePostSchema), updatePost);
+router.delete("/posts/:id", deletePost);
 
 module.exports = router;

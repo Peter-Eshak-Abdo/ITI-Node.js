@@ -1,38 +1,62 @@
 const AppError = require("../utils/AppError");
 const Group = require("../model/group");
+const User = require("../model/user");
 
-const createGroup = async (req, res, next) => {
-  const { name } = req.body;
+const hasId = (ids, id) =>
+  ids.some((item) => item.toString() === id.toString());
+
+const createGroup = async (req, res) => {
   const group = await Group.create({
-    name,
+    name: req.body.name,
     admins: [req.user._id],
     members: [req.user._id],
+    allowedToPost: [req.user._id],
   });
+
   res.status(201).json({ message: "Group created successfully", group });
 };
 
-const manageUsers = async (req, res, next) => {
+const manageUsers = async (req, res) => {
   const { groupId } = req.params;
   const { userId, action, permission } = req.body;
 
-  const group = await Group.findById(groupId);
-  if (!group) throw new AppError("Group not found", 404);
+  const [group, targetUser] = await Promise.all([
+    Group.findById(groupId),
+    User.findById(userId),
+  ]);
 
-  if (!group.admins.includes(req.user._id) && req.user.role !== "super-admin") {
+  if (!group) throw new AppError("Group not found", 404);
+  if (!targetUser) throw new AppError("User not found", 404);
+
+  const requesterIsAdmin = hasId(group.admins, req.user._id);
+  if (!requesterIsAdmin && req.user.role !== "super-admin") {
     throw new AppError("Only admins can manage group users", 403);
   }
 
   if (action === "add") {
-    if (!group.members.includes(userId)) group.members.push(userId);
-    if (permission === "write" && !group.allowedToPost.includes(userId)) {
+    if (!hasId(group.members, userId)) group.members.push(userId);
+
+    if (permission === "write" && !hasId(group.allowedToPost, userId)) {
       group.allowedToPost.push(userId);
     }
-  } else if (action === "remove") {
-    group.members = group.members.filter((id) => id.toString() !== userId);
-    group.allowedToPost = group.allowedToPost.filter(
-      (id) => id.toString() !== userId,
+
+    if (permission === "read") {
+      group.allowedToPost = group.allowedToPost.filter(
+        (id) => id.toString() !== userId.toString(),
+      );
+    }
+  }
+
+  if (action === "remove") {
+    group.members = group.members.filter(
+      (id) => id.toString() !== userId.toString(),
     );
-    group.admins = group.admins.filter((id) => id.toString() !== userId);
+    group.allowedToPost = group.allowedToPost.filter(
+      (id) => id.toString() !== userId.toString(),
+    );
+    group.admins = group.admins.filter(
+      (id) => id.toString() !== userId.toString(),
+    );
   }
 
   await group.save();

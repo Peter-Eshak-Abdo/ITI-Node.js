@@ -1,19 +1,35 @@
 const Joi = require("joi");
 
+const objectId = Joi.string().hex().length(24);
+
 const postSchema = Joi.object({
-  title: Joi.string().required(),
+  title: Joi.string().trim().required(),
   content: Joi.string().required(),
-  groupId: Joi.string().allow(null, ""),
+  groupId: objectId.allow(null, ""),
 });
 
+const updatePostSchema = Joi.object({
+  title: Joi.string().trim(),
+  content: Joi.string(),
+}).min(1);
+
 const groupSchema = Joi.object({
-  name: Joi.string().required(),
+  name: Joi.string().trim().required(),
 });
 
 const groupManageSchema = Joi.object({
-  userId: Joi.string().required(),
+  userId: objectId.required(),
   action: Joi.string().valid("add", "remove").required(),
-  permission: Joi.string().valid("read", "write").allow(null, ""),
+  permission: Joi.when("action", {
+    is: "add",
+    then: Joi.string().valid("read", "write").required(),
+    otherwise: Joi.string().valid("read", "write").optional(),
+  }),
 });
 
-module.exports = { postSchema, groupSchema, groupManageSchema };
+module.exports = {
+  postSchema,
+  updatePostSchema,
+  groupSchema,
+  groupManageSchema,
+};

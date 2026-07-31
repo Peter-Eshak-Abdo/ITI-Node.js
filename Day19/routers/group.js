@@ -6,12 +6,13 @@ const {
   groupSchema,
   groupManageSchema,
 } = require("../utils/validate-schema/validation");
+
 const router = express.Router();
 
-router.post("/groups", auth, validate(groupSchema), createGroup);
+router.use(auth);
+router.post("/groups", validate(groupSchema), createGroup);
 router.post(
   "/groups/:groupId/manage",
-  auth,
   validate(groupManageSchema),
   manageUsers,
 );

@@ -1,32 +1,33 @@
 require("dotenv").config();
-const express = require("express");
-const app = express();
-const userRouter = require("./routers/user");
-const authRouter = require("./routers/auth");
-const postRouter = require("./routers/post");
-const groupRouter = require("./routers/group");
-const errorHandler = require("./middleware/error");
-const notFoundHandler = require("./middleware/not-found");
+// const express = require("express");
+// const app = express();
+const app = require("./app");
+// const userRouter = require("./routers/user");
+// const authRouter = require("./routers/auth");
+// const postRouter = require("./routers/post");
+// const groupRouter = require("./routers/group");
+// const errorHandler = require("./middleware/error");
+// const notFoundHandler = require("./middleware/not-found");
 // const mongoose = require("mongoose");
-const morgan = require("morgan");
-const cors = require("cors");
+// const morgan = require("morgan");
+// const cors = require("cors");
 // const User = require("./model/user");
 const mongoConnect = require("./config/db-connect");
 
-mongoConnect();
+// mongoConnect();
 
-app.use(express.json());
-app.use("/uploads", express.static("uploads"));
-app.use(morgan("dev"));
-app.use(cors());
+// app.use(express.json());
+// app.use("/uploads", express.static("uploads"));
+// app.use(morgan("dev"));
+// app.use(cors());
 
-app.use("/api", userRouter);
-app.use("/api/auth", authRouter);
-app.use("/api", postRouter);
-app.use("/api", groupRouter);
+// app.use("/api", userRouter);
+// app.use("/api/auth", authRouter);
+// app.use("/api", postRouter);
+// app.use("/api", groupRouter);
 
-app.use(notFoundHandler);
-app.use(errorHandler);
+// app.use(notFoundHandler);
+// app.use(errorHandler);
 
 // await mongoose.connect(process.env.MONGODB_URI);
 // console.log("DB Connected!");
@@ -44,12 +45,26 @@ app.use(errorHandler);
 // app.listen(process.env.PORT || 3000, async () => {
 //   console.log(`Server is running on http://localhost:${process.env.PORT}`);
 // });
+//------------------------------------------------------
+// // تشغيل السيرفر محلياً
+// if (process.env.NODE_ENV !== 'production') {
+//   app.listen(process.env.PORT || 3000, () => {
+//     console.log(`Server is running on http://localhost:${process.env.PORT || 3000}`);
+//   });
+// }
 
-// تشغيل السيرفر محلياً
-if (process.env.NODE_ENV !== 'production') {
-  app.listen(process.env.PORT || 3000, () => {
-    console.log(`Server is running on http://localhost:${process.env.PORT || 3000}`);
-  });
-}
+// module.exports = app;
+//------------------------------------------------------------
+const startServer = async () => {
+  try {
+    await mongoConnect();
+    app.listen(process.env.PORT, () => {
+      console.log(`Server is running on http://localhost:${process.env.PORT}`);
+    });
+  } catch (error) {
+    console.error("Server failed to start:", error);
+    process.exit(1);
+  }
+};
 
-module.exports = app;
+startServer();

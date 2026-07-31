@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const postSchema = new mongoose.Schema(
   {
-    title: { type: String, required: true },
+    title: { type: String, required: true, trim: true },
     content: { type: String, required: true },
     images: [{ type: String }],
     author: {
@@ -16,11 +16,7 @@ const postSchema = new mongoose.Schema(
       default: null,
     },
   },
-  {
-    timestamps: true,
-  },
+  { timestamps: true },
 );
 
-const Post = mongoose.model("Post", postSchema);
-
-module.exports = Post;
+module.exports = mongoose.model("Post", postSchema);

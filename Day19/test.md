@@ -42,3 +42,5 @@ POST http://localhost:3000/api/auth/signup
 }
 
 <!-- npx plugins add vercel/vercel-plugin -->
+
+http://localhost:8080/api/health

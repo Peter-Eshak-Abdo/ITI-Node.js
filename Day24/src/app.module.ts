@@ -3,7 +3,6 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
 import { MongooseModule } from "@nestjs/mongoose";
 import { UserModule } from "./user/user.module";
 import { PostModule } from "./user/post/post.module";
-// import { PostModule } from "./post/post.module";
 
 @Module({
   imports: [

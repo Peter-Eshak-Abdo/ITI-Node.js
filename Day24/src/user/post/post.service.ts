@@ -10,7 +10,6 @@ import { Post, PostDocument } from "./schemas/post.schema";
 import { CreatePostDto } from "./dto/create-post.dto";
 import { UpdatePostDto } from "./dto/update-post.dto";
 import { UserService } from "../user.service";
-// import { UserService } from "../user/user.service";
 
 @Injectable()
 export class PostService {

@@ -77,10 +77,9 @@ exports.User = User = __decorate([
     (0, mongoose_1.Schema)({ timestamps: true })
 ], User);
 exports.UserSchema = mongoose_1.SchemaFactory.createForClass(User);
-exports.UserSchema.pre("save", async function (next) {
-    if (this.isModified("password")) {
+exports.UserSchema.pre('save', async function () {
+    if (this.isModified('password')) {
         this.password = await bcrypt.hash(this.password, 10);
     }
-    next();
 });
 //# sourceMappingURL=user.schema.js.map
